@@ -1,9 +1,13 @@
-﻿using Avalonia;
+﻿using System;
+using System.Reactive.Linq;
+using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Mixins;
 using Avalonia.Input;
-using Avalonia.Media;
 using Avalonia.ReactiveUI;
+using Avalonia.Threading;
 using Avalonia.VisualTree;
+using ReactiveUI;
 
 namespace Artemis.UI.Screens.VisualScripting.Pins;
 
@@ -18,6 +22,16 @@ public class PinView : ReactiveUserControl<PinViewModel>
         _pinPoint = pinPoint;
         _pinPoint.PointerMoved += PinPointOnPointerMoved;
         _pinPoint.PointerReleased += PinPointOnPointerReleased;
+
+        this.WhenActivated(d =>
+        {
+            if (ViewModel == null)
+                return;
+
+            // This is a bit of a nasty workaround that ensures the position of the pin has updated
+            ViewModel.Pin.Node.WhenAnyValue(n => n.X).Delay(TimeSpan.FromMilliseconds(1), AvaloniaScheduler.Instance).Subscribe(_ => UpdatePosition()).DisposeWith(d);
+            ViewModel.Pin.Node.WhenAnyValue(n => n.Y).Delay(TimeSpan.FromMilliseconds(1), AvaloniaScheduler.Instance).Subscribe(_ => UpdatePosition()).DisposeWith(d);
+        });
     }
 
     private void PinPointOnPointerMoved(object? sender, PointerEventArgs e)
@@ -67,13 +81,6 @@ public class PinView : ReactiveUserControl<PinViewModel>
     {
         base.OnAttachedToVisualTree(e);
         _container = this.FindAncestorOfType<Canvas>();
-    }
-
-    /// <inheritdoc />
-    public override void Render(DrawingContext context)
-    {
-        base.Render(context);
-        UpdatePosition();
     }
 
     private void UpdatePosition()

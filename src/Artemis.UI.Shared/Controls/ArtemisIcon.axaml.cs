@@ -2,12 +2,12 @@ using System;
 using System.Text.RegularExpressions;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Documents;
 using Avalonia.Layout;
 using Avalonia.LogicalTree;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
-using Avalonia.Visuals.Media.Imaging;
 using Material.Icons;
 using Material.Icons.Avalonia;
 
@@ -66,7 +66,7 @@ public class ArtemisIcon : UserControl
                     else
                         Content = new Border
                         {
-                            Background = TextBlock.GetForeground(this),
+                            Background = TextElement.GetForeground(this),
                             VerticalAlignment = VerticalAlignment.Stretch,
                             HorizontalAlignment = HorizontalAlignment.Stretch,
                             OpacityMask = new ImageBrush(new Bitmap(iconString)) {BitmapInterpolationMode = BitmapInterpolationMode.MediumQuality}

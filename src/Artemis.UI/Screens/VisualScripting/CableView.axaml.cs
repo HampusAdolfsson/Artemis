@@ -43,30 +43,42 @@ public class CableView : ReactiveUserControl<CableViewModel>
 
     private void Update(bool from)
     {
-        // Workaround for https://github.com/AvaloniaUI/Avalonia/issues/4748
-        _cablePath.Margin = new Thickness(_cablePath.Margin.Left + 1, _cablePath.Margin.Top + 1, 0, 0);
-        if (_cablePath.Margin.Left > 2)
-            _cablePath.Margin = new Thickness(0, 0, 0, 0);
+        if (ViewModel == null)
+            return;
 
-        PathFigure pathFigure = ((PathGeometry) _cablePath.Data).Figures.First();
-        BezierSegment segment = (BezierSegment) pathFigure.Segments!.First();
-        pathFigure.StartPoint = ViewModel!.FromPoint;
-        segment.Point1 = new Point(ViewModel.FromPoint.X + CABLE_OFFSET, ViewModel.FromPoint.Y);
-        segment.Point2 = new Point(ViewModel.ToPoint.X - CABLE_OFFSET, ViewModel.ToPoint.Y);
-        segment.Point3 = new Point(ViewModel.ToPoint.X, ViewModel.ToPoint.Y);
+        PathGeometry geometry = new()
+        {
+            Figures = new PathFigures()
+        };
+        PathFigure pathFigure = new()
+        {
+            StartPoint = ViewModel.FromPoint,
+            IsClosed = false,
+            Segments = new PathSegments
+            {
+                new BezierSegment
+                {
+                    Point1 = new Point(ViewModel.FromPoint.X + CABLE_OFFSET, ViewModel.FromPoint.Y),
+                    Point2 = new Point(ViewModel.ToPoint.X - CABLE_OFFSET, ViewModel.ToPoint.Y),
+                    Point3 = new Point(ViewModel.ToPoint.X, ViewModel.ToPoint.Y)
+                }
+            }
+        };
+        geometry.Figures.Add(pathFigure);
+        _cablePath.Data = geometry;
 
         Canvas.SetLeft(_valueBorder, ViewModel.FromPoint.X + (ViewModel.ToPoint.X - ViewModel.FromPoint.X) / 2);
         Canvas.SetTop(_valueBorder, ViewModel.FromPoint.Y + (ViewModel.ToPoint.Y - ViewModel.FromPoint.Y) / 2);
-        
+
         _cablePath.InvalidateVisual();
     }
 
-    private void OnPointerEnter(object? sender, PointerEventArgs e)
+    private void OnPointerEntered(object? sender, PointerEventArgs e)
     {
         ViewModel?.UpdateDisplayValue(true);
     }
 
-    private void OnPointerLeave(object? sender, PointerEventArgs e)
+    private void OnPointerExited(object? sender, PointerEventArgs e)
     {
         ViewModel?.UpdateDisplayValue(false);
     }

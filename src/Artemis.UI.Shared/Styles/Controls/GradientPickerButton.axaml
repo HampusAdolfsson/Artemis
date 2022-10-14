@@ -7,7 +7,7 @@
             <StackPanel Spacing="5">
                 <gradientPicker:GradientPickerButton IsCompact="True" />
                 <ComboBox HorizontalAlignment="Stretch"></ComboBox>
-                <controls:DropDownButton HorizontalAlignment="Stretch"></controls:DropDownButton>
+                <DropDownButton HorizontalAlignment="Stretch"></DropDownButton>
             </StackPanel>
 
         </Border>
@@ -30,8 +30,7 @@
         <Setter Property="CornerRadius" Value="{DynamicResource ControlCornerRadius}" />
         <Setter Property="Template">
             <ControlTemplate>
-
-                <controls:Button
+                <Button
                     Name="MainButton"
                                  Padding="0 0 12 0"
                                  CornerRadius="{TemplateBinding CornerRadius}"
@@ -54,7 +53,7 @@
                                    Margin="4,0,0,0" />
 
                     </Grid>
-                </controls:Button>
+                </Button>
 
 
             </ControlTemplate>

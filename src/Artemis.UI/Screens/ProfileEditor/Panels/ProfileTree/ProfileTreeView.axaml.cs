@@ -27,7 +27,7 @@ public class ProfileTreeView : ReactiveUserControl<ProfileTreeViewModel>
 
         AddHandler(DragDrop.DragEnterEvent, HandleDragEnterEvent, RoutingStrategies.Direct | RoutingStrategies.Tunnel | RoutingStrategies.Bubble, true);
         AddHandler(DragDrop.DragOverEvent, HandleDragOver, RoutingStrategies.Direct | RoutingStrategies.Tunnel | RoutingStrategies.Bubble, true);
-        AddHandler(PointerEnterEvent, HandlePointerEnter, RoutingStrategies.Direct | RoutingStrategies.Tunnel | RoutingStrategies.Bubble, true);
+        AddHandler(PointerEnteredEvent, HandlePointerEnter, RoutingStrategies.Direct | RoutingStrategies.Tunnel | RoutingStrategies.Bubble, true);
     }
 
     private void HandlePointerEnter(object? sender, PointerEventArgs e)

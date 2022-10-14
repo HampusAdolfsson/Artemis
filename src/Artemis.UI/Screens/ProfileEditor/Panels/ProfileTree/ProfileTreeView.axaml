@@ -100,7 +100,7 @@
                 </Style>
             </TreeView.Styles>
             <TreeView.ItemTemplate>
-                <TreeDataTemplate ItemsSource="{Binding Children}">
+                <TreeDataTemplate DataType="profileTree:TreeItemViewModel" ItemsSource="{Binding Children}">
                     <ContentControl Content="{Binding}" x:DataType="profileTree:TreeItemViewModel" Background="Transparent">
                         <ContentControl.ContextFlyout>
                             <MenuFlyout IsOpen="{CompiledBinding IsFlyoutOpen, Mode=OneWayToSource}">

@@ -6,6 +6,7 @@
              xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
              xmlns:core="clr-namespace:Artemis.Core;assembly=Artemis.Core"
              xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime"
              mc:Ignorable="d" d:DesignWidth="650" d:DesignHeight="450"
              x:Class="Artemis.UI.Screens.VisualScripting.NodePickerView"
              x:DataType="visualScripting:NodePickerViewModel"
@@ -17,15 +18,15 @@
             <Setter Property="InnerRightContent">
                 <Template>
                     <StackPanel Orientation="Horizontal">
-                        <controls:Button Content="&#xE8BB;"
-                                         FontFamily="{StaticResource SymbolThemeFontFamily}"
-                                         Classes="AppBarButton"
-                                         Command="{Binding $parent[TextBox].Clear}"
-                                         IsVisible="{Binding $parent[TextBox].Text, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
-                        <controls:Button Content="&#xE721;"
-                                         FontFamily="{StaticResource SymbolThemeFontFamily}"
-                                         Classes="AppBarButton"
-                                         IsHitTestVisible="False" />
+                        <Button Content="&#xE8BB;"
+                                FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                Classes="AppBarButton"
+                                Command="{Binding $parent[TextBox].Clear}"
+                                IsVisible="{Binding $parent[TextBox].Text, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+                        <Button Content="&#xE721;"
+                                FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                Classes="AppBarButton"
+                                IsHitTestVisible="False" />
                     </StackPanel>
                 </Template>
             </Setter>
@@ -52,7 +53,7 @@
                             <TextBlock Foreground="{DynamicResource TextFillColorSecondary}" Text="{Binding Description}" TextWrapping="Wrap"></TextBlock>
                         </StackPanel>
                     </TreeDataTemplate>
-                    <TreeDataTemplate ItemsSource="{Binding Items}">
+                    <TreeDataTemplate DataType="system:Object" ItemsSource="{Binding Items}">
                         <TextBlock Text="{Binding Key}"></TextBlock>
                     </TreeDataTemplate>
                 </TreeView.DataTemplates>

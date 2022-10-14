@@ -12,7 +12,6 @@ using Avalonia.Interactivity;
 using Avalonia.Media;
 using Avalonia.Threading;
 using FluentAvalonia.Core;
-using Button = FluentAvalonia.UI.Controls.Button;
 
 namespace Artemis.UI.Shared.Controls.GradientPicker;
 

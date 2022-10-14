@@ -68,8 +68,8 @@
         <Grid Grid.Row="2" ColumnDefinitions="*,Auto">
             <Button Grid.Row="0" Grid.Column="0" Command="{Binding AutoDetermineHints}">Auto-determine hints</Button>
             <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Spacing="5">
-                <controls:DropDownButton>
-                    <controls:DropDownButton.Flyout>
+                <DropDownButton>
+                    <DropDownButton.Flyout>
                         <MenuFlyout Placement="Top">
                             <MenuItem Header="Category hint" Command="{Binding AddCategoryHint}">
                                 <MenuItem.Icon>
@@ -87,9 +87,9 @@
                                 </MenuItem.Icon>
                             </MenuItem>
                         </MenuFlyout>
-                    </controls:DropDownButton.Flyout>
+                    </DropDownButton.Flyout>
                     Add hint
-                </controls:DropDownButton>
+                </DropDownButton>
                 <Button Command="{Binding Finish}">Close</Button>
             </StackPanel>
         </Grid>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Media;
@@ -137,11 +138,11 @@ public class TimelineHeader : Control
     private void RenderLabel(DrawingContext drawingContext, string text, double x)
     {
         Typeface typeFace = new(FontFamily);
-        FormattedText formattedText = new(text, typeFace, 9, TextAlignment.Left, TextWrapping.NoWrap, Bounds.Size);
+        FormattedText formattedText = new(text, CultureInfo.CurrentCulture, FlowDirection.LeftToRight, typeFace, 9, Foreground);
         if (x == 0 && OffsetFirstValue)
-            drawingContext.DrawText(Foreground, new Point(2, 5), formattedText);
+            drawingContext.DrawText(formattedText, new Point(2, 5));
         else
-            drawingContext.DrawText(Foreground, new Point(x - formattedText.Bounds.Width / 2, 5), formattedText);
+            drawingContext.DrawText(formattedText, new Point(x - formattedText.Width / 2, 5));
     }
 
     private void UpdateTimeScale()

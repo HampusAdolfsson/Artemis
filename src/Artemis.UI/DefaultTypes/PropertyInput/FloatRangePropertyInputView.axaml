@@ -22,6 +22,7 @@
                                      DragStarted="DraggableNumberBox_OnDragStarted"
                                      DragFinished="DraggableNumberBox_OnDragFinished" />
         <TextBlock VerticalAlignment="Center">-</TextBlock>
+        
         <controls:DraggableNumberBox Classes="condensed tooltip-validation-left"
                                      MinWidth="80"
                                      Value="{CompiledBinding End}"

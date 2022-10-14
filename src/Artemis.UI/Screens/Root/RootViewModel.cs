@@ -32,6 +32,7 @@ public class RootViewModel : ActivatableViewModelBase, IScreen, IMainWindowProvi
     private readonly IWindowService _windowService;
     private SidebarViewModel? _sidebarViewModel;
     private ViewModelBase? _titleBarViewModel;
+    private IRoutableViewModel? _currentViewModel;
 
     public RootViewModel(ICoreService coreService,
         ISettingsService settingsService,
@@ -70,6 +71,12 @@ public class RootViewModel : ActivatableViewModelBase, IScreen, IMainWindowProvi
         });
     }
 
+    public IRoutableViewModel? CurrentViewModel
+    {
+        get => _currentViewModel;
+        set => RaiseAndSetIfChanged(ref _currentViewModel, value);
+    }
+
     public SidebarViewModel? SidebarViewModel
     {
         get => _sidebarViewModel;
@@ -88,6 +95,8 @@ public class RootViewModel : ActivatableViewModelBase, IScreen, IMainWindowProvi
             TitleBarViewModel = mainScreenViewModel.TitleBarViewModel;
         else
             TitleBarViewModel = _defaultTitleBarViewModel;
+
+        CurrentViewModel = viewModel;
     }
 
     private void CurrentMainWindowOnClosing(object? sender, EventArgs e)
@@ -230,11 +239,6 @@ public class RootViewModel : ActivatableViewModelBase, IScreen, IMainWindowProvi
     }
 
     #endregion
-
-    public void SaveWindowBounds(int x, int y, int width, int height)
-    {
-        throw new NotImplementedException();    
-    }
 }
 
 internal class EmptyViewModel : MainScreenViewModel

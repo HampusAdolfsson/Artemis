@@ -168,7 +168,7 @@
                             BorderBrush="{DynamicResource ButtonBorderBrush}"
                             BorderThickness="0 0 1 0"
                             Padding="0 0 10 0">
-                        <fluent:ColorPicker Name="ColorPicker"
+                        <fluent:FAColorPicker Name="ColorPicker"
                                             ColorTextType="HexAlpha"
                                             UseColorWheel="True"
                                             UseColorTriangle="True"

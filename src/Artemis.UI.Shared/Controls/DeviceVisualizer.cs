@@ -15,7 +15,6 @@ using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 using Avalonia.Rendering;
 using Avalonia.Threading;
-using Avalonia.Visuals.Media.Imaging;
 
 namespace Artemis.UI.Shared;
 

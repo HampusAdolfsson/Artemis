@@ -27,7 +27,7 @@
         <Setter Property="CornerRadius" Value="{DynamicResource ControlCornerRadius}" />
         <Setter Property="Template">
             <ControlTemplate>
-                <controls:Button Name="MainButton"
+                <Button Name="MainButton"
                                  CornerRadius="{TemplateBinding CornerRadius}"
                                  BorderBrush="{TemplateBinding BorderBrush}"
                                  VerticalAlignment="{TemplateBinding VerticalAlignment}"
@@ -51,7 +51,7 @@
                                    Padding="2 2 2 0"
                                    Margin="5 0" />
                     </Grid>
-                </controls:Button>
+                </Button>
             </ControlTemplate>
         </Setter>
     </Style>

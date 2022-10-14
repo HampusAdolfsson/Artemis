@@ -5,7 +5,6 @@ using Avalonia;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
-using Avalonia.Visuals.Media.Imaging;
 using RGB.NET.Core;
 using Color = Avalonia.Media.Color;
 using Point = Avalonia.Point;

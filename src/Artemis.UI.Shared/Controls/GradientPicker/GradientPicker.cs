@@ -66,7 +66,7 @@ public class GradientPicker : TemplatedControl
         AvaloniaProperty.RegisterDirect<GradientPicker, ColorGradient>(nameof(EditingColorGradient), g => g.EditingColorGradient);
 
     private readonly ICommand _deleteStop;
-    private ColorPicker? _colorPicker;
+    private FAColorPicker? _colorPicker;
     private Button? _flipStops;
     private Border? _gradient;
     private Button? _randomize;
@@ -176,7 +176,7 @@ public class GradientPicker : TemplatedControl
         if (_randomize != null)
             _randomize.Click -= RandomizeOnClick;
 
-        _colorPicker = e.NameScope.Find<ColorPicker>("ColorPicker");
+        _colorPicker = e.NameScope.Find<FAColorPicker>("ColorPicker");
         _gradient = e.NameScope.Find<Border>("Gradient");
         _spreadStops = e.NameScope.Find<Button>("SpreadStops");
         _toggleSeamless = e.NameScope.Find<Button>("ToggleSeamless");

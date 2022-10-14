@@ -27,7 +27,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <controls:Button Name="MainButton"
+                    <Button Name="MainButton"
                                      Padding="0"
                                      BorderThickness="0"
                                      CornerRadius="{TemplateBinding CornerRadius}">
@@ -37,9 +37,9 @@
                                 MinWidth="18" MinHeight="18"
                                 Background="{TemplateBinding Color, Converter={StaticResource ColorBrushConv}}"
                                 CornerRadius="{TemplateBinding CornerRadius}">
-                            <controls:ColorPicker Name="ColorPicker" IsVisible="False" />
+                            <controls:FAColorPicker Name="ColorPicker" IsVisible="False" />
                         </Border>
-                    </controls:Button>
+                    </Button>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

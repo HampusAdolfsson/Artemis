@@ -71,10 +71,10 @@ public class TreeItemDragBehavior : Behavior<IControl>
 
         if (AssociatedObject is { })
         {
-            AssociatedObject.AddHandler(InputElement.PointerReleasedEvent, Released, RoutingStrategies.Tunnel);
-            AssociatedObject.AddHandler(InputElement.PointerPressedEvent, Pressed, RoutingStrategies.Tunnel);
-            AssociatedObject.AddHandler(InputElement.PointerMovedEvent, Moved, RoutingStrategies.Tunnel);
-            AssociatedObject.AddHandler(InputElement.PointerCaptureLostEvent, CaptureLost, RoutingStrategies.Tunnel);
+            AssociatedObject.AddHandler(InputElement.PointerReleasedEvent, ReleasedHandler, RoutingStrategies.Tunnel);
+            AssociatedObject.AddHandler(InputElement.PointerPressedEvent, PressedHandler, RoutingStrategies.Tunnel);
+            AssociatedObject.AddHandler(InputElement.PointerMovedEvent, MovedHandler, RoutingStrategies.Tunnel);
+            AssociatedObject.AddHandler(InputElement.PointerCaptureLostEvent, CaptureLostHandler, RoutingStrategies.Tunnel);
         }
     }
 
@@ -86,14 +86,14 @@ public class TreeItemDragBehavior : Behavior<IControl>
 
         if (AssociatedObject is { })
         {
-            AssociatedObject.RemoveHandler(InputElement.PointerReleasedEvent, Released);
-            AssociatedObject.RemoveHandler(InputElement.PointerPressedEvent, Pressed);
-            AssociatedObject.RemoveHandler(InputElement.PointerMovedEvent, Moved);
-            AssociatedObject.RemoveHandler(InputElement.PointerCaptureLostEvent, CaptureLost);
+            AssociatedObject.RemoveHandler(InputElement.PointerReleasedEvent, ReleasedHandler);
+            AssociatedObject.RemoveHandler(InputElement.PointerPressedEvent, PressedHandler);
+            AssociatedObject.RemoveHandler(InputElement.PointerMovedEvent, MovedHandler);
+            AssociatedObject.RemoveHandler(InputElement.PointerCaptureLostEvent, CaptureLostHandler);
         }
     }
 
-    private void Pressed(object? sender, PointerPressedEventArgs e)
+    private void PressedHandler(object? sender, PointerPressedEventArgs e)
     {
         PointerPointProperties properties = e.GetCurrentPoint(AssociatedObject).Properties;
         if (properties.IsLeftButtonPressed
@@ -114,7 +114,7 @@ public class TreeItemDragBehavior : Behavior<IControl>
         }
     }
 
-    private void Released(object? sender, PointerReleasedEventArgs e)
+    private void ReleasedHandler(object? sender, PointerReleasedEventArgs e)
     {
         if (_dragStarted)
         {
@@ -125,7 +125,7 @@ public class TreeItemDragBehavior : Behavior<IControl>
         }
     }
 
-    private void CaptureLost(object? sender, PointerCaptureLostEventArgs e)
+    private void CaptureLostHandler(object? sender, PointerCaptureLostEventArgs e)
     {
         Released();
     }
@@ -208,7 +208,7 @@ public class TreeItemDragBehavior : Behavior<IControl>
             selectingItemsControl.SelectedIndex = targetIndex;
     }
 
-    private void Moved(object? sender, PointerEventArgs e)
+    private void MovedHandler(object? sender, PointerEventArgs e)
     {
         PointerPointProperties properties = e.GetCurrentPoint(AssociatedObject).Properties;
         if (properties.IsLeftButtonPressed)

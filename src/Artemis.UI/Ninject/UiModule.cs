@@ -8,7 +8,6 @@ using Artemis.UI.Shared;
 using Artemis.UI.Shared.Services.NodeEditor;
 using Artemis.UI.Shared.Services.ProfileEditor;
 using Avalonia.Platform;
-using Avalonia.Shared.PlatformSupport;
 using Ninject.Extensions.Conventions;
 using Ninject.Extensions.Factory;
 using Ninject.Modules;

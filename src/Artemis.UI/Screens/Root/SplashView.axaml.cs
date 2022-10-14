@@ -17,11 +17,16 @@ public class SplashView : ReactiveWindow<SplashViewModel>
 #if DEBUG
         this.AttachDevTools();
 #endif
-        this.WhenActivated(disposables =>
+        this.WhenActivated(d =>
         {
-            Observable.FromEventPattern(x => ViewModel!.CoreService.Initialized += x, x => ViewModel!.CoreService.Initialized -= x)
-                .Subscribe(_ => Dispatcher.UIThread.Post(Close))
-                .DisposeWith(disposables);
+            if (ViewModel == null)
+                return;
+            
+            // Close when initialized
+            Observable.FromEventPattern(x => ViewModel.CoreService.Initialized += x, x => ViewModel!.CoreService.Initialized -= x).Subscribe(_ => Dispatcher.UIThread.Post(Close)).DisposeWith(d);
+            // Close if already initialized (can happen when there are no plugins)
+            if (ViewModel.CoreService.IsInitialized)
+                Close();
         });
     }
 

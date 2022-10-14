@@ -3,11 +3,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:reactiveUi="http://reactiveui.net"
+             xmlns:root="clr-namespace:Artemis.UI.Screens.Root"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Artemis.UI.Screens.Root.RootView">
-	<reactiveUi:RoutedViewHost Router="{Binding Router}">
-        <reactiveUi:RoutedViewHost.PageTransition>
-            <CrossFade Duration="0.1" />
-        </reactiveUi:RoutedViewHost.PageTransition>
-    </reactiveUi:RoutedViewHost>
+             x:Class="Artemis.UI.Screens.Root.RootView"
+             x:DataType="root:RootViewModel">
+	<!-- <reactiveUi:RoutedViewHost Router="{CompiledBinding Router}"> -->
+ <!--        <reactiveUi:RoutedViewHost.PageTransition> -->
+ <!--            <CrossFade Duration="0.1" /> -->
+ <!--        </reactiveUi:RoutedViewHost.PageTransition> -->
+ <!--    </reactiveUi:RoutedViewHost> -->
+	
+	<ContentControl Content="{CompiledBinding CurrentViewModel}"></ContentControl>
 </UserControl>
